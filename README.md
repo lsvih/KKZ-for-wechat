@@ -1,6 +1,6 @@
-# just-vue
+# KKZ-for-wechat
 
-A quick starter for Vue and Webpack.
+Powered by vue,started from juse-vue
 
 ## Usage
 

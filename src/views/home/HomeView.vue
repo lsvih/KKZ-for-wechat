@@ -1,11 +1,13 @@
 <template>
-    <div class="home">
-1234
-    </div>
+<footer>
+<div class="user"></div>
+<div class="caculate"></div>
+<div class="appointment">立即预约</div>
+</footer>
 </template>
 
 <script>
-// import Item from '../../components/Item.vue';
+import "../../scss/homeView.scss"
 export default {
     components: {
 
