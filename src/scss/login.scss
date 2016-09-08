@@ -1,0 +1,9 @@
+.backgroud{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:red;/*兼容不支持渐变的环境*/
+    background:-webkit-gradient(linear, 0 0, 0 bottom, from(#A7AB4C), to(#029B6B));
+}
