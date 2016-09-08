@@ -1,7 +1,7 @@
 import HomeView from '../views/home/HomeView.vue';
 import User from '../views/user/User.vue';
 import Login from '../views/user/Login.vue';
-import Caculate from '../views/custom/Caculate.vue';
+import Calculate from '../views/custom/Calculate.vue';
 import Appointment from '../views/custom/Appointment.vue';
 import NotFound from '../views/404.vue';
 

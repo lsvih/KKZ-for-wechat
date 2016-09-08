@@ -1,0 +1,36 @@
+.calculate-content{
+  position: relative;
+  padding:16px 26px 0 24px;
+  font-size: 20px;
+  color: #2F2F2F;
+  z-index: 1;
+}
+.calculate-backgroud{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  background-color: #fff;
+}
+
+.room:first-child{
+  margin-top: 20px;
+}
+.room{
+  img{
+    width:22px;
+    height: 22px;
+    margin-right: 10px;
+    vertical-align: text-top;
+  }
+  i{
+    display: inline-block;
+    float: right;
+    height: 18px;
+    width: 18px;
+    background-image: url("../images/icon/plus.png");
+    background-size: 100% 100%;
+  }
+}

@@ -1,6 +1,6 @@
 <template>
-
-<div class="backgroud"></div>
+123
+<div class="login-backgroud"></div>
 </template>
 
 <script>
