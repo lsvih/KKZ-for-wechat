@@ -5,7 +5,6 @@ import Caculate from '../views/custom/Caculate.vue';
 import Appointment from '../views/custom/Appointment.vue';
 import NotFound from '../views/404.vue';
 
-
 export default (router) => {
     router.map({
         '/': {
