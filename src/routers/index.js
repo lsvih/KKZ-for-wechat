@@ -16,8 +16,8 @@ export default (router) => {
         '/login': {
             component: Login
         },
-        '/caculate': {
-            component: Caculate
+        '/calculate': {
+            component: Calculate
         },
         '/appointment': {
             component: Appointment

@@ -8,7 +8,7 @@ import "../../scss/login.scss"
 export default {
     data() {
         return {
-          user:localStorage.user
+
         };
     },
     methods:{

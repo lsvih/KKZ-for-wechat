@@ -6,8 +6,8 @@
 
 <script>
 import './scss/style.scss';
-import user from './user';
+import store from './store';
 export default {
-	user
+	store
 }
 </script>

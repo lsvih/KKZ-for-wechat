@@ -10,7 +10,7 @@ footer{
   color:#fff;
   font-size: 18px;
   text-align:center;
-  .caculate,.user{
+  .calculate,.user{
     width: 29.2%;
     padding-top:7px;
     color:$grey;
@@ -37,10 +37,10 @@ footer{
       background-image: url("../images/icon/User-active.png");
     }
   }
-  .caculate .icon{
-    background-image: url("../images/icon/Caculate.png");
+  .calculate .icon{
+    background-image: url("../images/icon/Calculate.png");
     &:hover{
-      background-image: url("../images/icon/Caculate-active.png");
+      background-image: url("../images/icon/Calculate-active.png");
     }
   }
   .appointment{
