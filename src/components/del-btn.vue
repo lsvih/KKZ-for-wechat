@@ -1,5 +1,5 @@
 <template>
-  <div class="lsvih-minus" :style="style">-</div>
+  <div class="lsvih-minus-btn" :style="style">-</div>
 </template>
 <script>
 export default {
@@ -20,7 +20,7 @@ export default {
 }
 </script>
 <style lang="css">
-  .lsvih-minus{
+  .lsvih-minus-btn{
     position:absolute;
     display: inline-block;
     width:18px;

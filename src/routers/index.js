@@ -5,6 +5,7 @@ import Calculate from '../views/custom/Calculate.vue';
 import Appointment from '../views/custom/Appointment.vue';
 import NotFound from '../views/404.vue';
 
+
 export default (router) => {
     router.map({
         '/': {
@@ -28,5 +29,17 @@ export default (router) => {
     });
     router.redirect({
         '*': '/404',
+    });
+    router.beforeEach(function(transition) {
+        if (transition.to.path === '/calculate'||transition.to.path === '/'||transition.to.path === '/login') {
+            transition.next();
+        } else {
+            if(localStorage.getItem("user")){
+              transition.next();
+            }else{
+              router.go('/login');
+            }
+        }
     })
+
 }

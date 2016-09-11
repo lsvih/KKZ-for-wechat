@@ -8,9 +8,9 @@
         <div class="spaces">
             <span v-for="space in room.spaces"><div v-if="!($index%2)" class="border-line"></div>
               <del-btn @click="_delSpace($parent.$index,space)" color="#ccc"></del-btn>
-              <input type="number" v-bind:placeholder="space.name" v-model="space.size" @blur="_inputed(space.size,$event.target)" max="100" min="0" step="1">
-              <div class="unit"></div>
-            <hr/></span>
+              <input type="number" v-bind:placeholder="space.name" v-model="space.size" max="100" min="0" step="1">
+              <div class="unit" v-show="space.size">{{_setUnit(space.name)}}</div>
+            <hr></hr></span>
         </div>
     </div>
 </div>
@@ -29,16 +29,11 @@ import {
     isOnCalculate
 } from '../../store/getters'
 import {
+  rooms
+} from '../../store/getters'
+import {
     startCalculate
 } from '../../store/actions'
-import {
-    stopCalculate
-} from '../../store/actions'
-var kitchen_img = require('../../images/kitchen.png')
-var washroom_img = require('../../images/washroom.png')
-var wall_destroy_img = require('../../images/wall-destroy.png')
-var wall_normal_img = require('../../images/wall-normal.png')
-var door_img = require('../../images/door.png')
 var _calculate = false;
 export default {
     components: {
@@ -50,42 +45,12 @@ export default {
     },
     vuex: {
         getters: {
-            _calculate: isOnCalculate
+            _calculate: isOnCalculate,
+            rooms: rooms
         },
         actions: {
-            onCalculate: startCalculate,
-            offCalculate: stopCalculate
+            onCalculate: startCalculate
         },
-    },
-    data() {
-        return {
-            rooms: [{
-                name: "厨房",
-                id: "1",
-                image: kitchen_img,
-                spaces: []
-            }, {
-                name: "卫生间",
-                id: "2",
-                image: washroom_img,
-                spaces: []
-            }, {
-                name: "墙面涂刷(拆)",
-                id: "3",
-                image: wall_destroy_img,
-                spaces: []
-            }, {
-                name: "墙面涂刷(不拆)",
-                id: "4",
-                image: wall_normal_img,
-                spaces: []
-            }, {
-                name: "内门",
-                id: "5",
-                image: door_img,
-                spaces: []
-            }]
-        };
     },
     methods: {
         _addSpace: function(roomSub) {
@@ -102,9 +67,9 @@ export default {
                 });
             }
         },
-        _inputed: function(content, thisobj) {
-            let type = thisobj.getAttribute("placeholder").match(/\D*/)[0];
-            thisobj.parentNode.getElementsByClassName("unit")[0].innerText = (type != "内门") ? (content != "" ? "m²" : "") : (content != "" ? "个" : "");
+        _setUnit: function(name) {
+            let type = name.match(/\D*/)[0];
+            return type == "内门" ? "个":"m²";
         },
         _delSpace: function(roomSub, space) {
             this.rooms[roomSub].spaces.$remove(space);
@@ -140,15 +105,18 @@ export default {
 .fade-transition {
     transition: opacity .3s ease;
 }
+
 .fade-enter,
 .fade-leave {
     opacity: 0;
 }
-.pop-transition{
-  transition: bottom .5s ease-in;
+
+.pop-transition {
+    transition: bottom .5s ease-in;
 }
+
 .pop-enter,
-.pop-leave{
-  bottom: -100%!important;
+.pop-leave {
+    bottom: -100%!important;
 }
 </style>

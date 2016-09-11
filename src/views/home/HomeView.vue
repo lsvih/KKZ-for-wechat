@@ -22,13 +22,13 @@ export default {
     },
     methods:{
       _user:function(){
-        this.$route.router.go(this.user?{path:"/user"}:{path:"/login"})
+        this.$route.router.go({path:"/user"})
       },
       _calculate:function(){
         this.$route.router.go({path:"/calculate"});
       },
       _appointment:function(){
-        this.user?this.$route.router.go({path:"/appointment"}):this._user();
+        this.$route.router.go({path:"/appointment"});
       }
     }
 }
