@@ -25,21 +25,22 @@ export default (router) => {
         },
         '/404': {
             component: NotFound
-        }
+        },
     });
     router.redirect({
         '*': '/404',
     });
-    router.beforeEach(function(transition) {
-        if (transition.to.path === '/calculate'||transition.to.path === '/'||transition.to.path === '/login') {
-            transition.next();
-        } else {
-            if(localStorage.getItem("user")){
-              transition.next();
-            }else{
-              router.go('/login');
-            }
-        }
-    })
+    // router.beforeEach(function(transition) {
+    //     if (transition.to.path === '/calculate'||transition.to.path === '/'||transition.to.path === '/login') {
+    //         transition.next();
+    //     } else {
+    //         if(localStorage.getItem("user")){
+    //           transition.next();
+    //         }else{
+    //           router.go('/login');
+    //           history.replaceState()
+    //         }
+    //     }
+    // })
 
 }

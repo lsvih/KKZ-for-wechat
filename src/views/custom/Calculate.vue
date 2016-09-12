@@ -1,26 +1,25 @@
 <template>
-<mask :zindex="4" rgba="rgba(0,0,0,.75)" v-if="_calculate" transition="fade" transition-mode="out-in">
+<mask :zindex="4" rgba="rgba(0,0,0,.75)" v-if="_calculate" transition="fade" transition-mode="out-in" v-tap="offCalculate">
 </mask>
 <div class="calculate-content">
     计算家庭面积
     <div class="room" v-for="room in rooms">
-        <img :src="room.image">{{room.name}}<i class="plus-room" @click="_addSpace($index)"></i>
+        <img :src="room.image">{{room.name}}<i class="plus-room" v-tap="_addSpace($index)"></i>
         <div class="spaces">
             <span v-for="space in room.spaces"><div v-if="!($index%2)" class="border-line"></div>
-              <del-btn @click="_delSpace($parent.$index,space)" color="#ccc"></del-btn>
+              <del-btn v-tap="_delSpace($parent.$index,space)" color="#ccc"></del-btn>
               <input type="number" v-bind:placeholder="space.name" v-model="space.size" max="100" min="0" step="1">
               <div class="unit" v-show="space.size">{{_setUnit(space.name)}}</div>
             <hr></hr></span>
         </div>
     </div>
 </div>
-<div class="to-calculate" v-bind:class="{'active':isFillData()}" @click="isFillData()?toCaculate():return;">计算</div>
+<div class="to-calculate" v-bind:class="{'active':isFillData()}" v-tap="isFillData()?toCaculate():return;">计算</div>
 <calculate v-if="_calculate" transition="pop" transition-mode="out-in"></calculate>
 <div class="calculate-backgroud"></div>
 </template>
 <script>
 import "../../scss/calculate.scss"
-import divider from "vux/src/components/divider"
 import delBtn from "../../components/del-btn.vue"
 import mask from "../../components/mask.vue"
 import calculate from "./subpage/calc.vue"
@@ -32,13 +31,12 @@ import {
   rooms
 } from '../../store/getters'
 import {
-    startCalculate
+    startCalculate,stopCalculate
 } from '../../store/actions'
 var _calculate = false;
 export default {
     components: {
         Vuex,
-        divider,
         delBtn,
         mask,
         calculate
@@ -49,7 +47,8 @@ export default {
             rooms: rooms
         },
         actions: {
-            onCalculate: startCalculate
+            onCalculate: startCalculate,
+            offCalculate: stopCalculate
         },
     },
     methods: {

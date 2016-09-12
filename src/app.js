@@ -5,12 +5,14 @@ import Routers from './routers';
 import Vuex from 'vuex';
 // components
 import App from './app.vue';
+import vueTap from 'v-tap';
 
 
 // install plugins
 Vue.use(Router);
 Vue.use(Resource);
 Vue.use(Vuex);
+Vue.use(vueTap);
 // instantiate routing
 let router = new Router();
 Routers(router);

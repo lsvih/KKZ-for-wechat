@@ -1,12 +1,20 @@
 <template>
-<div class="lsvih-line-btn" :style="style">
+<div class="lsvih-btn" :style="style">
     <slot></slot>
 </div>
 </template>
 <script>
 export default {
     props: {
+        line: {
+            type: Boolean,
+            default: false
+        },
         color: {
+            type: String,
+            default: '#000'
+        },
+        fontColor: {
             type: String,
             default: '#000'
         },
@@ -29,15 +37,20 @@ export default {
         fontSize: {
             type: Number,
             default: 18
+        },
+        backgroundColor:{
+          type:String,
+          default:""
         }
     },
     computed: {
         style() {
             return {
+                backgroundColor: this.line ? "" : this.color,
                 borderColor: this.color,
                 borderWidth: this.borderWidth + 'px',
                 borderRadius: this.borderRadius + 'px',
-                color: this.color,
+                color: this.line?this.color:this.fontColor,
                 height: this.height + 'px',
                 width: this.width + 'px',
                 lineHeight: this.height + this.borderWidth + 'px',
@@ -48,7 +61,7 @@ export default {
 }
 </script>
 <style>
-.lsvih-line-btn {
+.lsvih-btn {
     border-style: solid;
     text-align: center;
 }
