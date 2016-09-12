@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { Scroller } from "vux"
+import Scroller from "vux/src/components/scroller"
 import lButtom from "../../../components/l-buttom.vue"
 import {
     rooms

@@ -23,7 +23,6 @@ import "../../scss/calculate.scss"
 import delBtn from "../../components/del-btn.vue"
 import mask from "../../components/mask.vue"
 import calculate from "./subpage/calc.vue"
-import Vuex from 'vuex'
 import {
     isOnCalculate
 } from '../../store/getters'
@@ -36,7 +35,6 @@ import {
 var _calculate = false;
 export default {
     components: {
-        Vuex,
         delBtn,
         mask,
         calculate

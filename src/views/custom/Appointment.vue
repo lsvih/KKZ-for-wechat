@@ -23,17 +23,16 @@
 </template>
 
 <script>
-import {
-    PopupPicker,
-    Group,
-    Cell,
-    Picker,
-    XTextarea,
-    XInput,
-    Checker,
-    CheckerItem,
-    Datetime
-} from 'vux'
+import PopupPicker from 'vux/src/components/popup-picker'
+import Group from 'vux/src/components/group'
+import Cell from 'vux/src/components/cell'
+import Picker from 'vux/src/components/picker'
+import XTextarea from 'vux/src/components/x-textarea'
+import XInput from 'vux/src/components/x-input'
+import Checker from 'vux/src/components/checker'
+import CheckerItem from 'vux/src/components/checker'
+import Datetime from 'vux/src/components/datetime'
+
 export default {
     components: {
         PopupPicker,
