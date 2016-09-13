@@ -23,7 +23,7 @@
         </div>
     </scroller>
     <div class="calc-footer">
-        <l-buttom font-color="#fff" color="#f3b630" :font-size="18" class="recalc-btn" :height="38" :width="108" v-tap="appointment">立即预约</l-buttom>
+        <l-buttom font-color="#fff" color="#f3b630" :font-size="18" class="recalc-btn" :height="38" width="108" v-tap="appointment">立即预约</l-buttom>
     </div>
 </div>
 </template>
@@ -113,21 +113,23 @@ export default {
     z-index: 5;
     position: fixed;
     width: calc( 100% - 38px * 2);
-    height: 75%;
+    height: 82%;
     bottom: 0;
     left: 0;
     color: #000;
+    line-height: 30px;
     background-color: #fff;
     padding: 0 38px;
     background-image: url("../../../images/calc-bg.png");
     background-repeat: no-repeat;
     background-position: bottom;
+    background-size: 100%;
 }
 
 .calc-header {
     margin: 0 0 20px -38px;
-    padding: 18px 38px 0;
-    height: 84px;
+    padding: 14px 38px 0;
+    height: 70px;
     width: 100%;
     background-color: #24A975;
     font-size: 30px;

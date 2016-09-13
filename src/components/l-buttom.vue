@@ -23,7 +23,7 @@ export default {
             default: 27
         },
         width: {
-            type: Number,
+            type: String,
             default: 71
         },
         borderRadius: {
@@ -41,13 +41,17 @@ export default {
         backgroundColor:{
           type:String,
           default:""
+        },
+        borderColor:{
+          type:String,
+          default:""
         }
     },
     computed: {
         style() {
             return {
                 backgroundColor: this.line ? "" : this.color,
-                borderColor: this.color,
+                borderColor: this.borderColor||this.color,
                 borderWidth: this.borderWidth + 'px',
                 borderRadius: this.borderRadius + 'px',
                 color: this.line?this.color:this.fontColor,

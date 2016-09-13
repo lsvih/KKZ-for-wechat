@@ -1,24 +1,27 @@
 <template>
 <div>
-
-    <group title="">
-        <x-input title="姓名" :value.sync="name" name="username" placeholder="请输入姓名" :show-clear="false">
+    <popup-picker title="地区" :data="area" :columns="3" :show-cell="false" :show.sync="showSelect" :value.sync="areaSelect" show-name v-ref:area></popup-picker>
+    <group style="margin-top:-1.17647059em">
+        <x-input style="padding:18px 24px" title="姓名" :value.sync="name" name="username" placeholder="请输入姓名" :show-clear="false">
             <div class="sex-item"><span style="border-right: 1px solid #ddd;" :class="{'sex-item-selected':sex=='女士'}" v-tap="sex='女士'">女士</span><span :class="{'sex-item-selected':sex=='先生'}" v-tap="sex='先生'">先生</span></div>
         </x-input>
-        <x-input title="手机号码" :value.sync="phone" name="mobile" placeholder="请输入手机号码" keyboard="number" is-type="china-mobile"></x-input>
+        <x-input style="padding:18px 24px" title="手机号码" :value.sync="phone" name="mobile" placeholder="请输入手机号码" keyboard="number" is-type="china-mobile" readonly></x-input>
+        <div class="mask-the-cell-after"></div>
     </group>
-
-    <group title="">
-        <cell title="地区" :value="$refs.area.getNameValues()" v-tap="_show()"></cell>
-
-        <x-textarea :value.sync="address" :height="50" :max="100" name="address" placeholder="请填写详细地址"></x-textarea>
+    <group style="margin-top:-.7em;">
+        <div class="mask-the-cell-before"></div>
+        <cell style="padding:18px 24px;" title="地区" :value="$refs.area.getNameValues()||'请选择'" v-tap="_show()" is-link></cell>
+        <x-textarea style="padding:18px 24px" :value.sync="address" :height="50" :max="100" name="address" placeholder="请填写详细地址"></x-textarea>
+        <div class="mask-the-cell-after"></div>
     </group>
-
-    <group title="" class="data-time-picker">
-        <datetime :value.sync="appoint_at" placeholder="请选择日期" :min-year=2016 :max-year=2017 format="YYYY-MM-DD HH:mm" title="预约上门时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分" confirm-text="完成" cancel-text="取消"></datetime>
+    <group style="margin-top:-.7em">
+        <div class="mask-the-cell-before"></div>
+        <datetime style="padding:18px 24px;" :value.sync="appoint_at" placeholder="请选择日期" :min-year=2016 :max-year=2017 format="YYYY-MM-DD HH:mm" title="预约上门时间" year-row="{value}年" month-row="{value}月" day-row="{value}日" hour-row="{value}点" minute-row="{value}分"
+            confirm-text="完成" cancel-text="取消"></datetime>
+        <div class="mask-the-cell-after"></div>
     </group>
     <div class="to-calculate" style="position:absolute" v-bind:class="{'active':isFillData()}" v-tap="isFillData()?submit():return;">确定</div>
-    <popup-picker title="地区" :data="area" :columns="3" :show-cell="false" :show.sync="showSelect" :value.sync="areaSelect" show-name v-ref:area></popup-picker>
+
 </div>
 </template>
 
@@ -51,7 +54,7 @@ export default {
             this.showSelect = true;
         },
         isFillData: function() {
-            return this.name != "" && this.appoint_at != "" && this.areaSelect.length && this.address != "" && /^(13[0-9]|14[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8}$/i.test(this.phone)
+            return this.name != "" && this.appoint_at != "" && this.areaSelect.length && this.address != ""
         },
         submit: function() {
             alert("下面没有了")
@@ -120,7 +123,7 @@ export default {
                 parent: 'usa002'
             }],
             name: "",
-            phone: "",
+            phone: localStorage.getItem("user"),
             areaSelect: [],
             address: "",
             sex: "女士",
@@ -144,10 +147,28 @@ export default {
 
 .sex-item span {
     display: inline-block;
-    padding: 0 10px;
+    padding: 0 16px;
 }
 
 .sex-item-selected {
     color: #1EA87C;
+}
+
+.mask-the-cell-before {
+    position: absolute;
+    top: -1px;
+    width: 100%;
+    height: 5px;
+    background-color: #fff;
+    z-index: 1;
+}
+
+.mask-the-cell-after {
+    position: absolute;
+    bottom: -1px;
+    width: 100%;
+    height: 5px;
+    background-color: #fff;
+    z-index: 1;
 }
 </style>

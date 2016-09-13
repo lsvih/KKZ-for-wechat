@@ -32,6 +32,7 @@ import {
 import {
     startCalculate,stopCalculate
 } from '../../store/actions'
+import Vue from 'vue'
 var _calculate = false;
 export default {
     components: {
