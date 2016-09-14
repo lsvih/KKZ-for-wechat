@@ -4,7 +4,7 @@ import Login from '../views/user/Login.vue';
 import Calculate from '../views/custom/Calculate.vue';
 import Appointment from '../views/custom/Appointment.vue';
 import NotFound from '../views/404.vue';
-
+import Product from '../views/product/Product.vue';
 
 export default (router) => {
     router.map({
@@ -23,9 +23,13 @@ export default (router) => {
         '/appointment': {
             component: Appointment
         },
+        '/product':{
+            component: Product
+        },
         '/404': {
             component: NotFound
         },
+
     });
     router.redirect({
         '*': '/404',

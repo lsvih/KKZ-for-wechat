@@ -27,10 +27,11 @@ import {
     isOnCalculate
 } from '../../store/getters'
 import {
-  rooms
+    rooms
 } from '../../store/getters'
 import {
-    startCalculate,stopCalculate
+    startCalculate,
+    stopCalculate
 } from '../../store/actions'
 import Vue from 'vue'
 var _calculate = false;
@@ -67,7 +68,7 @@ export default {
         },
         _setUnit: function(name) {
             let type = name.match(/\D*/)[0];
-            return type == "内门" ? "个":"m²";
+            return type == "内门" ? "个" : "m²";
         },
         _delSpace: function(roomSub, space) {
             this.rooms[roomSub].spaces.$remove(space);
@@ -87,6 +88,7 @@ export default {
             return filled
         },
         toCaculate: function() {
+            document.activeElement.blur();
             this.rooms.map((room, roomSub) => {
                 for (let i = room.spaces.length - 1; i >= 0; i--) {
                     let space = room.spaces[i];
@@ -110,7 +112,8 @@ export default {
 }
 
 .pop-transition {
-    transition: bottom .5s ease-in;
+    will-change: bottom;
+    transition: bottom .2s ease;
 }
 
 .pop-enter,

@@ -3,7 +3,7 @@
     <input v-model="phone" type="tel" id="phone" placeholder="手机号码" />
     <input v-model="verify" type="text" id="verify" placeholder="短信验证码"/><label class="send-verify" v-bind:class="{'active-verify':verfy_phone()}">获取验证码</label>
     <div class="alert">{{alert}}</div>
-    <l-buttom :font-size="16" border-color="transparent" color="rgba(255,255,255,.47)" width="100%" :height="48" :border-radius="24" font-color="#fff" v-tap="login">确定</l-buttom>
+    <l-buttom style="margin-top:14px" :font-size="16" border-color="transparent" color="rgba(255,255,255,.47)" width="100%" :height="48" :border-radius="24" font-color="#fff" v-tap="login">确定</l-buttom>
     <l-divider class="divider" color="fff">或</l-divider>
     <l-buttom :font-size="16" :line="true" color="#fff" width="100%" :height="48" :border-radius="24" v-tap="wx_login">微信登录</l-buttom>
 </div>
