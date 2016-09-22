@@ -24,22 +24,22 @@ export default {
             user: localStorage.getItem("user"),
             products: [{
                     "id": 1,
-                    "name": "厨房",
+                    "name": "厨房翻新",
                     "e_name": "Kitchen",
                     "content": "无论是有人为你每日忙在厨房，还是一人食，整体翻新都是感恩拥有的礼物。"
                 }, {
                     "id": 2,
-                    "name": "卫生间",
+                    "name": "卫生间翻新",
                     "e_name": "Toilet",
                     "content": "整体翻新吧，卫生间可忍孰不可忍！也许每日只有这段时光，属于完整的自我。"
                 }, {
                     "id": 3,
-                    "name": "墙面涂刷",
+                    "name": "涂装焕新",
                     "e_name": "Wall Painting",
                     "content": "总想换个活法，不如先从给房间焕新开始。然后无论多少次出发，都满血复活。"
                 }, {
                     "id": 4,
-                    "name": "内门",
+                    "name": "内门更换",
                     "e_name": "Inside Door",
                     "content": "安扇新门，为最容易被忽略的家人。泛起温柔，守护这同一屋檐下的光阴。"
                 },

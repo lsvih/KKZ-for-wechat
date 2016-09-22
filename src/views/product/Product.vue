@@ -127,7 +127,8 @@ export default {
                             image: require('../../images/door.png'),
                             title: "施耐德开关插座",
                             content: [
-                                "防臭防堵，防返水，防蚊虫，易拆洗",
+                                "开关分合能力强，耐疲劳能力高",
+                                "插座使用寿命长，稳定性高"
                             ],
                         },
                     ],
@@ -137,14 +138,14 @@ export default {
                 banner: {
                     image: require('../../images/product/02.png'),
                     head: {
-                        title: "10日厨房翻新",
+                        title: "7日卫生间翻新",
                         priceNumber: 13999,
                         priceUnit: "元起"
                     },
                     body: {
                         title: "每天都该有段独处时光",
                         content: [
-                            "瓷砖罢工了，浴霸苍老了，马桶在闹性子……",
+                            "瓷砖罢工了，浴霸苍老了，马桶在闹性子‧‧‧‧‧‧",
                             "没做干湿分离，每个清晨都在抢厕所中互相伤害。",
                             "就不能让你一个人静静？！",
                             "能！卫生间整体翻新！！",
@@ -222,6 +223,45 @@ export default {
                 banner: {
                     image: require('../../images/product/03.png'),
                     head: {
+                        title: "1日涂装焕新",
+                        priceNumber: 999,
+                        priceUnit: "元起/间"
+                    },
+                    body: {
+                        title: "憧憬每一次的焕然一新",
+                        content: [
+                            "城里人不说忙，不谈论投入产出比，多不fashion!",
+                            "好吧，最快、最划算的当然是涂装！",
+                            "某日工作一天回家后，",
+                            "仿佛被念了“焕然一新”魔法！",
+                        ],
+                    },
+                },
+                pack: {
+                    title: "这些全打包",
+                    content: [
+                        "乳胶漆or壁纸",
+                        "施工安装，含辅材、成品保护、拆除",
+                    ],
+                },
+                material: {
+                    title: "主材不将就",
+                    list: [
+                        {
+                            image: require('../../images/door.png'),
+                            title: "诗珑漆",
+                            content: [
+                                "德国百年企业J.W.O.原装进口，食品级制造标准",
+                                "即刷即住，无毒无异味，蓝天使、LGA等全球顶级环保认证",
+                            ],
+                        }
+                    ],
+                },
+            },
+            {
+                banner: {
+                    image: require('../../images/product/04.png'),
+                    head: {
                         title: "3日内门更换",
                         priceNumber: 1099,
                         priceUnit: "元起/套"
@@ -256,45 +296,7 @@ export default {
                     ],
                 },
             },
-            {
-                banner: {
-                    image: require('../../images/product/04.png'),
-                    head: {
-                        title: "1日涂装焕新",
-                        priceNumber: 999,
-                        priceUnit: "元起/间"
-                    },
-                    body: {
-                        title: "憧憬每一次的焕然一新",
-                        content: [
-                            "城里人不说忙，不谈论投入产出比，多不fashion!",
-                            "好吧，最快、最划算的当然是涂装！",
-                            "趁TA一日外出，",
-                            "为你们的家念个“焕然一新”魔法！",
-                        ],
-                    },
-                },
-                pack: {
-                    title: "这些全打包",
-                    content: [
-                        "乳胶漆or壁纸",
-                        "施工安装，含辅材、成品保护、拆除",
-                    ],
-                },
-                material: {
-                    title: "主材不将就",
-                    list: [
-                        {
-                            image: require('../../images/door.png'),
-                            title: "诗珑漆",
-                            content: [
-                                "德国百年企业J.W.O.原装进口，食品级制造标准",
-                                "即刷即住，无毒无异味，蓝天使、LGA等全球顶级环保认证",
-                            ],
-                        }
-                    ],
-                },
-            },
+
         ];
         var productId = parseInt(this.$route.query.id);
         return {
