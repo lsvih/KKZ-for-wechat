@@ -1,5 +1,5 @@
 <template>
-<scroller style="z-index:10" :height="SCREENHEIGHT-52" lock-x :prevent-default="false" scrollbar-y>
+<scroller style="z-index:10" :height="(SCREENHEIGHT-52)" lock-x :prevent-default="false" scrollbar-y>
     <div class="home-content">
         <div v-tap="viewProduct(product.id)" class="product" v-for="product in products" v-bind:class="'product-' + product.id">
             <div class="product-name">{{product.name}}{{product.e_name}}</div>
@@ -49,25 +49,6 @@ export default {
         };
     },
     methods: {
-        _user: function() {
-            this.user ? this.$route.router.go({
-                path: "/user"
-            }) : this.$route.router.go({
-                path: "/login?link=user"
-            })
-        },
-        _calculate: function() {
-            this.$route.router.go({
-                path: "/calculate"
-            });
-        },
-        _appointment: function() {
-            this.user ? this.$route.router.go({
-                path: "/appointment"
-            }) : this.$route.router.go({
-                path: "/login?link=appointment"
-            });
-        },
         viewProduct: function(productId) {
             this.$route.router.go({
                 path: "/product?id=" + productId
