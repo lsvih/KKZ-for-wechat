@@ -7,25 +7,17 @@
         </div>
     </div>
 </scroller>
-<footer>
-    <div class="user" v-tap="_user">
-        <div class="icon"></div>
-        <span v-if="!user">登录/注册</span>
-        <span v-if="user">我的</span>
-    </div>
-    <div class="calculate" v-tap="_calculate">
-        <div class="icon"></div>
-        <span>计算</span></div>
-    <div class="appointment" v-tap="_appointment">立即预约</div>
-</footer>
+<l-footer user="user"></l-footer>
 </template>
 
 <script>
 import Scroller from "vux/src/components/scroller"
+import lFooter from "../../components/l-footer.vue"
 import "../../scss/homeView.scss"
 export default {
     components: {
-        Scroller
+        Scroller,
+        lFooter,
     },
     data() {
         return {

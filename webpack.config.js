@@ -50,9 +50,9 @@ var Configrue = {
                 loader: 'url?limit=5120&name=images/[name].[ext]',
             },
             {
-  test: /vux.src.*?js$/,
-  loader: 'babel'
-}
+                test: /vux.src.*?js$/,
+                loader: 'babel'
+            }
         ]
     },
     babel: {
