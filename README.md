@@ -12,6 +12,14 @@ $ npm start
 $ npm run prod
 ```
 
+## 当部署前应该做的事
+
+确认dist/js/app.js中的图片路径全部正确(webpack没设置好)
+
+确认dist/css/style.css中的图片路径全部正确
+
+#如果图片出了偏差你可是要挨骂的哦！
+
 ## webpack.config.js
 
 ```js
