@@ -29,7 +29,6 @@ export default {
     },
     methods: {
         ss: function() {
-            localStorage.setItem("user", this.phone);
             this.$route.router.go({
                 path: this.$route.query.link
             })
@@ -43,13 +42,14 @@ export default {
             tick(50000, function() {
                 that.wait = 0
             })
-            this.$http.get('/kkz/api/web/users/verify-code?mobile='+this.phone).then((res)=>{
-              return;
-            },(res)=>{
-              that.alert = '验证码发送失败，请稍后再试'
+            this.$http.get('/kkz/api/web/users/verify-code?mobile=' + this.phone).then((res) => {
+                return;
+            }, (res) => {
+                that.alert = '验证码发送失败，请稍后再试'
             })
         },
         login: function() {
+            let that = this
             if (!this.verfy_phone()) {
                 this.alert = "请输入正确的手机号";
                 return false;
@@ -60,11 +60,26 @@ export default {
             }
             this.alert = "";
             // this.wx_login();
-            this.$http.get('/kkz/api/web/').then((res) => {
-                //success
+            var regData = new FormData()
+            regData.append('SignupForm[mobile]',this.phone)
+            regData.append('SignupForm[safe_code]',this.verify)
+            var loginData = new FormData()
+            loginData.append("LoginForm[mobile]", that.phone)
+            loginData.append("LoginForm[safe_code]", that.verify)
+            this.$http.post('/kkz/api/web/users/signup', regData).then((res) => {
+                localStorage.setItem("user", JSON.stringify(res.data.data))
+                that.ss()
             }, (res) => {
-                //failed
+                that.$http.post('/kkz/api/web/users/login', loginData).then((res) => {
+                    localStorage.setItem("user", JSON.stringify(res.data.data))
+                    that.ss()
+                }, (res) => {
+                    that.alert = "登录失败"
+                })
             })
+
+
+
         },
         // wx_login: function(){
         //   this.ss();

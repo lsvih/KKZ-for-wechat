@@ -53,14 +53,14 @@ export default {
         Loading,
         Alert
     },
-    ready(){
-      if(localStorage.getItem("user")){
-        this.phone = JSON.parse(localStorage.getItem("user")).mobile
-      }else{
-        this.$route.router.go({
-            path: "/login?link=appointment"
-        })
-      }
+    ready() {
+        if (localStorage.getItem("user")) {
+            this.phone = JSON.parse(localStorage.getItem("user")).mobile
+        } else {
+            this.$route.router.go({
+                path: "/login?link=appointment"
+            })
+        }
     },
     methods: {
         _show: function() {
@@ -70,34 +70,34 @@ export default {
         isFillData: function() {
             return this.name != "" && this.appoint_at != "" && this.areaSelect.length && this.address != ""
         },
-        appoint_ok(){
-          location.href = "/#!/"
+        appoint_ok() {
+            location.href = "/wechat/#!/"
         },
         submit: function() {
             this.showLoading = true
             let city = this.$refs.area.getNameValues().split(" ")
             let that = this
             let appointstamp = new Date(this.appoint_at)
-            appointstamp = appointstamp.getTime()/1000
-            this.$http.post("/kkz/api/web/houses", {
-                user_id: JSON.parse(localStorage.getItem("user")).user_id,
-                zone_code: '000000',
-                province: city[0],
-                city: city[1],
-                county: city[2],
-                street: "",
-                address: this.address
-            }).then((res) => {
-                that.$http.post("/kkz/api/web/house-appointments",{
-                  house_id: res.data.data.house_id,
-                  user_id: JSON.passe(localStorage.getItem("user")).user_id,
-                  appointment:appointstamp
-                }).then((res)=>{
-                  that.showLoading = false
-                  that.showSuccess = true
-                },(res)=>{
-                  that.showLoading = false
-                  that.showAlert = true
+            appointstamp = appointstamp.getTime() / 1000
+            let houseInfo = new FormData()
+            houseInfo.append('user_id', JSON.parse(localStorage.getItem("user")).id)
+            houseInfo.append('zone_code', '000000')
+            houseInfo.append('province', city[0])
+            houseInfo.append('city', city[1])
+            houseInfo.append('county', city[2])
+            houseInfo.append('street', "x")
+            houseInfo.append('address', this.address)
+            this.$http.post("/kkz/api/web/houses", houseInfo).then((res) => {
+                let appointData = new FormData()
+                appointData.append('house_id', res.data.data.id)
+                appointData.append('user_id', JSON.parse(localStorage.getItem("user")).id)
+                appointData.append('appointment', appointstamp)
+                that.$http.post("/kkz/api/web/house-appointments", appointData).then((res) => {
+                    that.showLoading = false
+                    that.showSuccess = true
+                }, (res) => {
+                    that.showLoading = false
+                    that.showAlert = true
                 })
             }, (res) => {
                 this.showLoading = false
@@ -110,7 +110,7 @@ export default {
             showSelect: false,
             showLoading: false,
             showAlert: false,
-            showSuccess:false,
+            showSuccess: false,
             area: [{
                 name: '中国',
                 value: 'china',
@@ -170,7 +170,7 @@ export default {
             }],
             name: "",
             areaSelect: [],
-            phone:"",
+            phone: "",
             address: "",
             sex: "女士",
             appoint_at: ""
