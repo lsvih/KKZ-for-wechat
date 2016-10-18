@@ -2,7 +2,8 @@
 <mask :zindex="4" rgba="rgba(0,0,0,.75)" v-if="_calculate" transition="fade" transition-mode="out-in" v-tap="offCalculate">
 </mask>
 <div class="calculate-content">
-    计算家庭面积
+    计算装修费用
+    <div class="tip" v-tap="onTip"> <img src="../../images/tip.png"></div>
     <div class="room" v-for="room in rooms">
         <img :src="room.image">{{room.name}}<i class="plus-room" v-tap="_addSpace($index)"></i>
         <div class="spaces">
@@ -16,6 +17,7 @@
 </div>
 <div class="to-calculate" v-bind:class="{'active':isFillData()}" v-tap="isFillData()?toCaculate():return;">计算</div>
 <calculate v-if="_calculate" transition="pop" transition-mode="out-in"></calculate>
+<tip v-if="_tip" transition="fade" transition-mode="out-in"></tip>
 <div class="calculate-backgroud"></div>
 </template>
 <script>
@@ -23,39 +25,51 @@ import "../../scss/calculate.scss"
 import delBtn from "../../components/del-btn.vue"
 import mask from "../../components/mask.vue"
 import calculate from "./subpage/calc.vue"
+import tip from "./subpage/tip.vue"
 import {
-    isOnCalculate
+    isOnCalculate,
+    rooms,
+    isOnTip
 } from '../../store/getters'
-import {
-    rooms
-} from '../../store/getters'
+
 import {
     startCalculate,
-    stopCalculate
+    stopCalculate,
+    openTip
 } from '../../store/actions'
-import Vue from 'vue'
 var _calculate = false;
 export default {
     components: {
         delBtn,
         mask,
-        calculate
+        calculate,
+        tip
+    },
+    data() {
+        return {
+            showTip: false,
+        };
     },
     vuex: {
         getters: {
             _calculate: isOnCalculate,
+            _tip: isOnTip,
             rooms: rooms
         },
         actions: {
+            onTip: openTip,
             onCalculate: startCalculate,
             offCalculate: stopCalculate
         },
     },
     methods: {
+        openTip: function() {
+            this.showTip = true
+        },
         _addSpace: function(roomSub) {
             let roomName = this.rooms[roomSub].name;
             let num = 2;
-            if (roomName == "内门") {
+            if (roomName == "内门" || roomName == "厨卫内门") {
                 num = !this.rooms[roomSub].spaces.length ? 1 : 0;
             }
             if (roomName == "墙面涂刷(拆)" || roomName == "墙面涂刷(不拆)") roomName = "空间";
@@ -68,7 +82,7 @@ export default {
         },
         _setUnit: function(name) {
             let type = name.match(/\D*/)[0];
-            return type == "内门" ? "个" : "m²";
+            return type == "内门" || type == "厨卫内门" ? "个" : "m²";
         },
         _delSpace: function(roomSub, space) {
             this.rooms[roomSub].spaces.$remove(space);

@@ -14,7 +14,7 @@
 <script>
 export default {
     props: {
-        user: "",
+        user: localStorage.getItem('user'),
     },
     methods: {
         _user: function() {

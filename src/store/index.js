@@ -12,6 +12,7 @@ var wall_normal_img = require('../images/wall-normal.png')
 var door_img = require('../images/door.png')
 const state = {
     onCalculate: false,
+    isOnTip: false,
     rooms: [{
         name: "厨房",
         id: "1",
@@ -35,6 +36,11 @@ const state = {
     }, {
         name: "内门",
         id: "5",
+        image: door_img,
+        spaces: []
+    },{
+        name: "厨卫内门",
+        id: "6",
         image: door_img,
         spaces: []
     }]

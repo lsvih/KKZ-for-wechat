@@ -1,12 +1,23 @@
 // mutations/index.js
 
-import { ONCALCULATE, OFFCALCULATE } from '../constants';
+import {
+    OPENTIP,
+    OFFTIP,
+    ONCALCULATE,
+    OFFCALCULATE
+} from '../constants';
 
 export default {
-    [ONCALCULATE] (state) {
+    [ONCALCULATE](state) {
         state.onCalculate = true
     },
-    [OFFCALCULATE] (state) {
+    [OFFCALCULATE](state) {
         state.onCalculate = false
+    },
+    [OPENTIP](state) {
+        state.isOnTip = true
+    },
+    [OFFTIP](state) {
+        state.isOnTip = false
     }
 }

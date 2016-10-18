@@ -53,7 +53,7 @@ export default {
     methods: {
         _setUnit: function(name) {
             let type = name.match(/\D*/)[0];
-            return type == "内门" ? "个" : "m²";
+            return type == "内门"||type=="厨卫内门" ? "个" : "m²";
         },
         appointment: function() {
             this.offCalculate;
@@ -67,6 +67,9 @@ export default {
             switch (type) {
                 case "内门":
                     return size * 1799;
+                    break;
+                case "厨卫内门":
+                    return size * 1099;
                     break;
                 case "厨房":
                     return size <= 4 ? 17999 : Math.round(size) * 999;

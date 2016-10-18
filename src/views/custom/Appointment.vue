@@ -5,7 +5,7 @@
         <x-input style="padding:18px 24px" title="姓名" :value.sync="name" name="username" placeholder="请输入姓名" :show-clear="false">
             <div class="sex-item"><span style="border-right: 1px solid #ddd;" :class="{'sex-item-selected':sex=='女士'}" v-tap="sex='女士'">女士</span><span :class="{'sex-item-selected':sex=='先生'}" v-tap="sex='先生'">先生</span></div>
         </x-input>
-        <x-input style="padding:18px 24px" title="手机号码" :value.sync="phone" name="mobile" placeholder="请输入手机号码" keyboard="number" is-type="china-mobile" readonly></x-input>
+        <x-input style="padding:18px 24px" title="手机号码" :value.sync="phone" name="mobile" keyboard="number" is-type="china-mobile" readonly></x-input>
         <div class="mask-the-cell-after"></div>
     </group>
     <group style="margin-top:-.7em;">
@@ -21,7 +21,9 @@
         <div class="mask-the-cell-after"></div>
     </group>
     <div class="to-calculate" style="position:absolute" v-bind:class="{'active':isFillData()}" v-tap="isFillData()?submit():return;">确定</div>
-
+    <loading :show="showLoading" text="正在预约，请稍后..."></loading>
+    <alert :show.sync="showAlert" title="快快装">网络连接失败，请稍后再试</alert>
+    <alert :show.sync="showSuccess" title="快快装" @on-hide="appoint_ok">预约成功，请等待管家联系</alert>
 </div>
 </template>
 
@@ -35,7 +37,8 @@ import XInput from 'vux/src/components/x-input'
 import Checker from 'vux/src/components/checker'
 import CheckerItem from 'vux/src/components/checker'
 import Datetime from 'vux/src/components/datetime'
-
+import Loading from 'vux/src/components/loading'
+import Alert from 'vux/src/components/alert'
 export default {
     components: {
         PopupPicker,
@@ -46,7 +49,18 @@ export default {
         XInput,
         Checker,
         CheckerItem,
-        Datetime
+        Datetime,
+        Loading,
+        Alert
+    },
+    ready(){
+      if(localStorage.getItem("user")){
+        this.phone = JSON.parse(localStorage.getItem("user")).mobile
+      }else{
+        this.$route.router.go({
+            path: "/login?link=appointment"
+        })
+      }
     },
     methods: {
         _show: function() {
@@ -56,15 +70,47 @@ export default {
         isFillData: function() {
             return this.name != "" && this.appoint_at != "" && this.areaSelect.length && this.address != ""
         },
-        submit: function() {
-            alert("下面没有了")
+        appoint_ok(){
+          location.href = "/#!/"
         },
-
+        submit: function() {
+            this.showLoading = true
+            let city = this.$refs.area.getNameValues().split(" ")
+            let that = this
+            let appointstamp = new Date(this.appoint_at)
+            appointstamp = appointstamp.getTime()/1000
+            this.$http.post("/kkz/api/web/houses", {
+                user_id: JSON.parse(localStorage.getItem("user")).user_id,
+                zone_code: '000000',
+                province: city[0],
+                city: city[1],
+                county: city[2],
+                street: "",
+                address: this.address
+            }).then((res) => {
+                that.$http.post("/kkz/api/web/house-appointments",{
+                  house_id: res.data.data.house_id,
+                  user_id: JSON.passe(localStorage.getItem("user")).user_id,
+                  appointment:appointstamp
+                }).then((res)=>{
+                  that.showLoading = false
+                  that.showSuccess = true
+                },(res)=>{
+                  that.showLoading = false
+                  that.showAlert = true
+                })
+            }, (res) => {
+                this.showLoading = false
+                this.showAlert = true
+            })
+        },
     },
-
     data() {
         return {
             showSelect: false,
+            showLoading: false,
+            showAlert: false,
+            showSuccess:false,
             area: [{
                 name: '中国',
                 value: 'china',
@@ -123,8 +169,8 @@ export default {
                 parent: 'usa002'
             }],
             name: "",
-            phone: localStorage.getItem("user"),
             areaSelect: [],
+            phone:"",
             address: "",
             sex: "女士",
             appoint_at: ""

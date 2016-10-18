@@ -8,7 +8,17 @@ $grey: #878787;
     color: #2F2F2F;
     z-index: 1;
 }
+.tip {
 
+    position: fixed;
+    top:20px;
+    right:35px;
+
+    img {
+        width: 20px;
+        height: 20px;
+    }
+}
 .calculate-backgroud {
     position: fixed;
     top: 0;
@@ -25,6 +35,8 @@ $grey: #878787;
 
 .room {
     padding-top: 10px;
+
+
 
     img {
         width: 22px;
@@ -44,7 +56,8 @@ $grey: #878787;
 }
 
 .spaces {
-  min-height:54px;
+    min-height: 54px;
+
     span {
         display: inline-block;
         width: 50%;
@@ -55,7 +68,7 @@ $grey: #878787;
             line-height: 32px;
             text-align: center;
             font-size: 15px;
-            border:none;
+            border: none;
         }
 
         hr {
