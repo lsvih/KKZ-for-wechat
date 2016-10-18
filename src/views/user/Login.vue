@@ -1,7 +1,7 @@
 <template>
 <div class="login-content">
     <input v-model="phone" type="tel" id="phone" placeholder="手机号码" />
-    <input v-model="verify" type="text" id="verify" placeholder="短信验证码" /><label class="send-verify" v-bind:class="{'active-verify':verfy_phone()}" v-tap="(verfy_phone()&&wait)?getVerify():return;">获取验证码</label>
+    <input v-model="verify" type="text" id="verify" placeholder="短信验证码" /><label class="send-verify" v-bind:class="{'active-verify':(verfy_phone()&&wait)}" v-tap="(verfy_phone()&&wait)?getVerify():return;">获取验证码</label>
     <div class="alert">{{alert}}</div>
     <l-buttom style="margin-top:14px" :font-size="16" border-color="transparent" color="rgba(255,255,255,.47)" width="100%" :height="48" :border-radius="24" font-color="#fff" v-tap="login">确定</l-buttom>
     <!-- <l-divider class="divider" color="fff">或</l-divider> -->
@@ -24,7 +24,7 @@ export default {
             alert: "",
             phone: "",
             verify: "",
-            wait: 1
+            wait: true
         };
     },
     methods: {
@@ -37,15 +37,13 @@ export default {
             return /^(13[0-9]|14[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8}$/i.test(this.phone)
         },
         getVerify: function() {
-            this.wait = 1
+            this.wait = false
             let that = this
-            tick(50000, function() {
-                that.wait = 0
-            })
             this.$http.get('/kkz/api/web/users/verify-code?mobile=' + this.phone).then((res) => {
                 return;
             }, (res) => {
                 that.alert = '验证码发送失败，请稍后再试'
+                that.wait = true
             })
         },
         login: function() {
@@ -75,6 +73,7 @@ export default {
                     that.ss()
                 }, (res) => {
                     that.alert = "登录失败"
+                    that.wait = true
                 })
             })
 
@@ -90,9 +89,4 @@ export default {
     }
 }
 
-function tick(time, cb) {
-    setTimeout(function() {
-        cb()
-    }, time)
-}
 </script>

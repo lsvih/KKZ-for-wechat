@@ -112,61 +112,81 @@ export default {
             showAlert: false,
             showSuccess: false,
             area: [{
-                name: '中国',
-                value: 'china',
+                name: '北京',
+                value: 'beijing',
                 parent: 0
+            },{
+                name: '北京市',
+                value: 'bj',
+                parent: 'beijing'
             }, {
-                name: '美国',
-                value: 'USA',
-                parent: 0
+                name: '东城',
+                value: 'dc',
+                parent: 'bj'
             }, {
-                name: '广东',
-                value: 'china001',
-                parent: 'china'
+                name: '西城',
+                value: 'xc',
+                parent: 'bj'
             }, {
-                name: '广西',
-                value: 'china002',
-                parent: 'china'
+                name: '海淀',
+                value: 'hd',
+                parent: 'bj'
             }, {
-                name: '美国001',
-                value: 'usa001',
-                parent: 'USA'
-            }, {
-                name: '美国002',
-                value: 'usa002',
-                parent: 'USA'
-            }, {
-                name: '广州',
-                value: 'gz',
-                parent: 'china001'
-            }, {
-                name: '深圳',
-                value: 'sz',
-                parent: 'china001'
-            }, {
-                name: '广西001',
-                value: 'gx001',
-                parent: 'china002'
-            }, {
-                name: '广西002',
-                value: 'gx002',
-                parent: 'china002'
-            }, {
-                name: '美国001_001',
-                value: '0003',
-                parent: 'usa001'
-            }, {
-                name: '美国001_002',
-                value: '0004',
-                parent: 'usa001'
-            }, {
-                name: '美国002_001',
-                value: '0005',
-                parent: 'usa002'
-            }, {
-                name: '美国002_002',
-                value: '0006',
-                parent: 'usa002'
+                name: '海淀',
+                value: 'hd',
+                parent: 'bj'
+            },{
+                name: '朝阳',
+                value: 'cy',
+                parent: 'bj'
+            },{
+                name: '丰台',
+                value: 'ft',
+                parent: 'bj'
+            },{
+                name: '门头沟',
+                value: 'mtg',
+                parent: 'bj'
+            },{
+                name: '石景山',
+                value: 'sjs',
+                parent: 'bj'
+            },{
+                name: '房山',
+                value: 'fs',
+                parent: 'bj'
+            },{
+                name: '通州',
+                value: 'tz',
+                parent: 'bj'
+            },{
+                name: '顺义',
+                value: 'sy',
+                parent: 'bj'
+            },{
+                name: '昌平',
+                value: 'cp',
+                parent: 'bj'
+            },{
+                name: '大兴',
+                value: 'dx',
+                parent: 'bj'
+            },{
+                name: '怀柔',
+                value: 'hr',
+                parent: 'bj'
+            },{
+                name: '平谷',
+                value: 'pg',
+                parent: 'bj'
+            },{
+                name: '延庆',
+                value: 'yq',
+                parent: 'bj'
+            },{
+                name: '密云',
+                value: 'my',
+                parent: 'bj'
             }],
             name: "",
             areaSelect: [],
