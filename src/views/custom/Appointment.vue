@@ -81,6 +81,7 @@ export default {
             appointstamp = appointstamp.getTime() / 1000
             let houseInfo = new FormData()
             houseInfo.append('user_id', JSON.parse(localStorage.getItem("user")).id)
+            houseInfo.append('fullname',this.name)
             houseInfo.append('zone_code', '000000')
             houseInfo.append('province', city[0])
             houseInfo.append('city', city[1])
