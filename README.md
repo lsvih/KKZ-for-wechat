@@ -20,7 +20,7 @@ $ npm run prod
 
 ## 当部署前应该做的事
 
-确认dist/js/app.js中的图片路径全部正确(webpack没设置好)
+确认dist/js/app.js中的图片路径全部正确(webpack的设置是针对部署在根目录的)
 
 确认dist/css/style.css中的图片路径全部正确
 
