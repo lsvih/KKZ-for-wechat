@@ -1,6 +1,12 @@
 # KKZ-for-wechat
 
-Powered by vue,started from juse-vue
+Powered by vue,started from just-vue
+
+## Install
+
+```sh
+$ npm run install
+```
 
 ## Usage
 
